@@ -1,68 +1,115 @@
 package rovar;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestRovar {
-	static String lowerInputString1;
-	static String lowerExpectedString1;
-	static String lowerExpectedString2;
-
-	static String upperInputString1;
-	static String upperExpectedString1;
-	static String upperExpectedString2;
-	
-	static String vowelInputString1;
-	static String vowelExpectedString1;
-	static String vowelExpectedString2;
-	
-
-	@BeforeClass
-	public static void initializeInputs(){
-		lowerInputString1 = "srt";
-		lowerExpectedString1 = "sosrortot";
-		
-		upperInputString1 = "SRT";
-		upperExpectedString1 = "SOSRORTOT";
-		
-		vowelInputString1 = "ae";
-		vowelExpectedString1 = "ae";
-
-	}
 	
 	@Test
 	public void testEnrovLowerEquals(){		
-		assertEquals(Rovar.enrov(lowerInputString1), lowerExpectedString1);
+		assertEquals(Rovar.enrov("srt"), "sosrortot");
 	}
 	
 	@Test
 	public void testEnrovLowerNotEquals(){	
-		assertNotEquals(Rovar.enrov(lowerInputString1), lowerExpectedString2);
+		assertNotEquals(Rovar.enrov("srt"), "caner");
 	}
 	
 	@Test
 	public void testEnrovUpperEquals(){		
-		assertEquals(Rovar.enrov(upperInputString1), upperExpectedString1);
+		assertEquals(Rovar.enrov("SRT"), "SOSRORTOT");
 	}
 	
 	@Test
-	public void testEnrovUpperNotEquals(){	
-		assertNotEquals(Rovar.enrov(upperInputString1), upperExpectedString2);
+	public void testEnrovValidCombinedEquals(){		
+		assertEquals(Rovar.enrov("BbCcFf"), "BOBbobCOCcocFOFfof");
 	}
 	
 	@Test
-	public void testEnrovVowelEquals(){		
-		assertEquals(Rovar.enrov(vowelInputString1), vowelExpectedString1);
+	public void testEnrovValidAndUnvalidCombinedEquals(){	
+		assertEquals(Rovar.enrov("BbCcDdFf"), "BOBbobCOCcocDdodFOFfof");
+	}
+	
+	
+	@Test
+	public void testEnrovValidAndUnvalidWithVowelCombinedEquals(){	
+		assertEquals(Rovar.enrov("aaBbCcEeDdFfAa"), "aaBOBbobCOCcocEeDdodFOFfofAa");
 	}
 	
 	@Test
-	public void testEnrovVowelNotEquals(){	
-		assertNotEquals(Rovar.enrov(vowelInputString1), vowelExpectedString2);
+	public void testEnrovValidAndUnvalidWithVowelAndSpaceCombinedEquals(){	
+		assertEquals(Rovar.enrov("  aaBbCcE   eDdFfAa  "), "  aaBOBbobCOCcocE   eDdodFOFfofAa  ");
+	}
+	
+	@Test
+	public void testEnrovOnlySpaceEquals(){	
+		assertEquals(Rovar.enrov(" "), " ");
 	}
 	
 	@Test
 	public void testEnrovNull(){	
 		assertNull(Rovar.enrov(null));
+	}
+	
+	@Test
+	public void testDerovLowerEquals(){	
+		System.out.println(Rovar.derov("sosrortot"));
+		assertEquals(Rovar.derov("sosrortot"), "srt");
+	}
+	
+	@Test
+	public void testDerovLowerNotEquals(){	
+		assertNotEquals(Rovar.derov("caner"), "srt");
+	}
+	
+	@Test
+	public void testDerovUpperEquals(){		
+		assertEquals(Rovar.derov("SOSRORTOT"), "SRT");
+	}
+	
+	@Test
+	public void testDerovValidCombinedEquals(){		
+		assertEquals(Rovar.derov("BOBbobCOCcocFOFfof"), "BbCcFf");
+	}
+	
+	@Test
+	public void testDerovValidAndUnvalidCombinedEquals(){	
+		assertEquals(Rovar.derov("BOBbobCOCcocDdodFOFfof"), "BbCcDdFf");
+	}
+	
+	
+	@Test
+	public void testDerovValidAndUnvalidWithVowelCombinedEquals(){	
+		assertEquals(Rovar.derov("aaBOBbobCOCcocEeDdodFOFfofAa"), "aaBbCcEeDdFfAa");
+	}
+	
+	@Test
+	public void testDerovValidAndUnvalidWithVowelAndSpaceCombinedEquals(){
+		assertEquals(Rovar.derov("  aaBOBbobCOCcocE   eDdodFOFfofAa  "), "  aaBbCcE   eDdFfAa  ");
+	}
+	
+	@Test
+	public void testDerovOnlySepcialEquals(){
+		assertEquals(Rovar.derov("ooo"), "ooo");
+	}
+	
+	@Test
+	public void testDerovOnlySepcialCombinedEquals(){
+		assertEquals(Rovar.derov("OoO"), "OoO");
+	}
+	
+	@Test
+	public void testDerovMixSepcialCombinedEquals(){
+		assertEquals(Rovar.derov("OososoO"), "OosoO");
+	}
+	
+	@Test
+	public void testDerovOnlySpaceEquals(){	
+		assertEquals(Rovar.derov(" "), " ");
+	}
+	
+	@Test
+	public void testDerovNull(){	
+		assertNull(Rovar.derov(null));
 	}
 }
