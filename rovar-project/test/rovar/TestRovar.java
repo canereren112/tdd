@@ -42,6 +42,21 @@ public class TestRovar {
 	}
 	
 	@Test
+	public void testEnrovValidAndUnvalidWithVowelSpaceSpecialCombinedEquals(){
+		assertEquals(Rovar.enrov("  aaB11 &&bC23cE   eDdFf?+??? Aa  "), "  aaBOB11 &&bobCOC23cocE   eDdodFOFfof?+??? Aa  ");
+	}
+	
+	@Test
+	public void testEnrovOnlyNumbersEquals(){
+		assertEquals(Rovar.enrov("123666"), "123666");
+	}
+	
+	@Test
+	public void testEnrovOnlySpecialEquals(){
+		assertEquals(Rovar.enrov("??&&//##öööö**"), "??&&//##öööö**");
+	}
+	
+	@Test
 	public void testEnrovOnlySpaceEquals(){	
 		assertEquals(Rovar.enrov(" "), " ");
 	}
@@ -101,6 +116,21 @@ public class TestRovar {
 	@Test
 	public void testDerovMixSepcialCombinedEquals(){
 		assertEquals(Rovar.derov("OososoO"), "OosoO");
+	}
+	
+	@Test
+	public void testDerovOnlyNumbersEquals(){
+		assertEquals(Rovar.derov("1122312"), "1122312");
+	}
+	
+	@Test
+	public void testDerovOnlySpecialEquals(){
+		assertEquals(Rovar.derov("??##**(())(("), "??##**(())((");
+	}
+	
+	@Test
+	public void testDerovNumberAndSpecialEquals(){
+		assertEquals(Rovar.derov("??12#33#**782(11())3(1("), "??12#33#**782(11())3(1(");
 	}
 	
 	@Test
