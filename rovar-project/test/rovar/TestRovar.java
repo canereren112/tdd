@@ -16,6 +16,16 @@ public class TestRovar {
 	}
 	
 	@Test
+	public void testEnrovLowerDefectCharactersEquals(){	
+		assertEquals(Rovar.enrov("gy"), "gogyoy");
+	}
+	
+	@Test
+	public void testEnrovUpperDefectCharactersEquals(){	
+		assertEquals(Rovar.enrov("DY"), "DODYOY");
+	}
+	
+	@Test
 	public void testEnrovUpperEquals(){		
 		assertEquals(Rovar.enrov("SRT"), "SOSRORTOT");
 	}
@@ -27,23 +37,23 @@ public class TestRovar {
 	
 	@Test
 	public void testEnrovValidAndUnvalidCombinedEquals(){	
-		assertEquals(Rovar.enrov("BbCcDdFf"), "BOBbobCOCcocDdodFOFfof");
+		assertEquals(Rovar.enrov("BbCcDdFf"), "BOBbobCOCcocDODdodFOFfof");
 	}
 	
 	
 	@Test
 	public void testEnrovValidAndUnvalidWithVowelCombinedEquals(){	
-		assertEquals(Rovar.enrov("aaBbCcEeDdFfAa"), "aaBOBbobCOCcocEeDdodFOFfofAa");
+		assertEquals(Rovar.enrov("aaBbCcEeDdFfAa"), "aaBOBbobCOCcocEeDODdodFOFfofAa");
 	}
 	
 	@Test
 	public void testEnrovValidAndUnvalidWithVowelAndSpaceCombinedEquals(){	
-		assertEquals(Rovar.enrov("  aaBbCcE   eDdFfAa  "), "  aaBOBbobCOCcocE   eDdodFOFfofAa  ");
+		assertEquals(Rovar.enrov("  aaBbCcE   eDdFfAa  "), "  aaBOBbobCOCcocE   eDODdodFOFfofAa  ");
 	}
 	
 	@Test
 	public void testEnrovValidAndUnvalidWithVowelSpaceSpecialCombinedEquals(){
-		assertEquals(Rovar.enrov("  aaB11 &&bC23cE   eDdFf?+??? Aa  "), "  aaBOB11 &&bobCOC23cocE   eDdodFOFfof?+??? Aa  ");
+		assertEquals(Rovar.enrov("  aaB11 &&bC23cE   eDdFf?+??? Aa  "), "  aaBOB11 &&bobCOC23cocE   eDODdodFOFfof?+??? Aa  ");
 	}
 	
 	@Test
@@ -68,7 +78,6 @@ public class TestRovar {
 	
 	@Test
 	public void testDerovLowerEquals(){	
-		System.out.println(Rovar.derov("sosrortot"));
 		assertEquals(Rovar.derov("sosrortot"), "srt");
 	}
 	
@@ -136,6 +145,16 @@ public class TestRovar {
 	@Test
 	public void testDerovOnlySpaceEquals(){	
 		assertEquals(Rovar.derov(" "), " ");
+	}
+	
+	@Test
+	public void testDerovLowerDefectCharactersEquals(){	
+		assertEquals( "gy", Rovar.derov("gogyoy"));
+	}
+	
+	@Test
+	public void testDerovUpperDefectCharactersEquals(){	
+		assertEquals("DY", Rovar.derov("DODYOY") );
 	}
 	
 	@Test
